@@ -1,0 +1,178 @@
+*{
+    padding: 0;
+    margin: 0;
+    /*conta o tamanho do elemento junto com a borda e o padding*/
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    background-color: #246221;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.memory-game{
+    height: 640px;
+    width: 640px;
+    margin: auto;
+    display: flex;
+    /*para quando os elementos não couberem mais na linha eles irem para de baixo*/
+    flex-wrap: wrap;
+    /*mostra a perspectiva do usuário no eixo z(3D), quanto maior a perspectiva maior o efeito 3D*/
+    perspective: 1000px;
+}
+
+.card{
+    
+    width: calc(25% - 10px);
+    height: calc(25% - 10px);
+    margin: 5px;
+    position: relative;
+    box-shadow: 1px 1px 1px 1px #1641146b;
+    cursor: pointer;
+    transform: scale(1);
+    /*não vai deixar o elemento achatado no plano*/
+    transform-style: preserve-3d;
+    transition: transform .9s;
+}
+
+.card:active{
+    /*da uma diminuída no tamanho da carta na hora da transição */
+    transform: scale(0.97);
+    transition: transform .3s;
+
+}
+
+.card-front, .card-back{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    position: absolute;
+    border-radius: 5px;
+    background: #ffffff;
+    /*o verso de cada elemento é ele mesmo, por exemplo o verso da imagem bola é ela mesma com o backface-visibility: hidden tiramos essa condição e fazemos que o que apareça seja a imagem que está por trás*/
+    backface-visibility: hidden;
+}
+
+.card-front{
+    transform: rotateY(180deg);
+
+}
+
+/*FLIP CARD ANIMAÇÃO*/
+
+.card.flip{
+    transform: rotateY(180deg);
+}
+
+.winner{
+    background-image: url('/assets/imagens/winner.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+    width: 500px;
+    margin: auto;
+    position: absolute;
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 5px;
+    display: flex;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .5s ease-out;
+    box-shadow: 1px 2px 2px 2px rgba(44, 44, 44, 0.514);
+    
+}
+
+.winner p{
+    background-color: #ffffff;
+    color: #43ab74;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    
+}
+
+#full {
+    position: absolute; /* posição absoluta ao elemento pai, neste caso o BODY */
+        
+        left: 77%; 
+        top: 580px;
+        padding: 3px 3px 0 3px;       
+        background-color: rgba(218, 217, 217, 0.55);
+        z-index: 1000; /* Faz com que fique sobre todos os elementos da página */
+}
+
+/*RESPONSIVO*/
+
+@media (max-width: 650px) {
+    .memory-game{
+
+        height: 400px;
+        width: 400px;
+    }
+
+    .card-front, .card-back{
+        
+        padding: 5px;
+    }
+
+    .winner{
+        width: 300px;
+        height: 300px;
+        padding-bottom: 0;
+    }
+
+    .winner a{
+        
+        font-size: 14px;
+    
+    }
+
+    #full{
+        display: none;
+    }
+}
+
+@media (max-width: 410px) {
+    .memory-game{
+
+        height: 300px;
+        width: 300px;
+    }
+
+    .card-front, .card-back{
+        
+        padding: 5px;
+    }
+
+    .winner{
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 300px) {
+    .memory-game{
+
+        height: 200px;
+        width: 200px;
+    }
+
+    .card-front, .card-back{
+        
+        padding: 5px;
+    }
+
+    
+
+    
+}
+
