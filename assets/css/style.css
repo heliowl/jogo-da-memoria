@@ -71,7 +71,7 @@ body{
 }
 
 .winner{
-    background-image: url('assets/imagens/winner.png');
+    background-image: url('../imagens/winner.png');
     background-repeat: no-repeat;
     background-size: cover;
     height: 500px;
